@@ -1,16 +1,22 @@
 import React from 'react'
 import { Row, Col } from 'antd'
+import './style/common.less'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import NavLeft from './components/NavLeft'
+import Home from './pages/home'
 
 export default class Admin extends React.Component {
   render() {
     return (
-      <Row>
-        <Col span={3}>Left</Col>
-        <Col span={21}>
-          <Header></Header>
-          <Footer></Footer>
+      <Row className="container">
+        <Col span={4} className="nav-left">
+          <NavLeft />
+        </Col>
+        <Col span={20} className="main">
+          <Header />
+          <Row className='content'><Home></Home>{/*this.props.children*/}</Row>
+          <Footer />
         </Col>
       </Row>
     )
