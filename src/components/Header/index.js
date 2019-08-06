@@ -13,7 +13,7 @@ class Header extends React.Component {
       weather: '阴转多云' // 防止api挂掉给的默认值
     })
 
-    setInterval(() => {
+    this.timer = setInterval(() => {
       const sysTime = Util.formatDate(new Date().getTime())
       this.setState({
         sysTime
@@ -21,6 +21,10 @@ class Header extends React.Component {
     }, 1000)
 
     this.getWeatherAPIData()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
   }
 
   getWeatherAPIData() {
