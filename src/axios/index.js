@@ -27,7 +27,7 @@ export default class Axios {
       loading.style.display = 'block'
     }
 
-    const baseApi = 'https://www.easy-mock.com/mock/5d5567803648ff2af04ca93b/react-antd-bike-admin'
+    const baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api'
     return new Promise((resovle, reject) => {
       axios({
         url: options.url,
@@ -42,12 +42,13 @@ export default class Axios {
         }
         if(response.status === 200) {
           const res = response.data
-          if(res.code === 0) {
+          // eslint-disable-next-line
+          if(res.code == 0) {
             resovle(res)
           } else {
             Modal.info({
               title: '提示',
-              content: res.msg
+              content: `请求出错---${res.msg}`
             })
           }
         } else {
