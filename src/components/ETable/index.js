@@ -1,5 +1,4 @@
 import React from 'react'
-import Utils from '../../utils/utils'
 import { Table } from 'antd'
 
 class ETable extends React.Component {

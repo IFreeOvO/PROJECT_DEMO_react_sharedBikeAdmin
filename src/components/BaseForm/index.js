@@ -26,7 +26,7 @@ class FilterForm extends React.Component {
           const begin_time = <FormItem label="订单时间" key={'begin_time'}>
             {
               getFieldDecorator('begin_time')(
-                <DatePicker showTime format="YYYY-MM-DD HH:mm:ss"></DatePicker>
+                <DatePicker showTime placeholder={placeholder} format="YYYY-MM-DD HH:mm:ss"></DatePicker>
               )
             }
           </FormItem>
@@ -36,7 +36,7 @@ class FilterForm extends React.Component {
           const end_time = <FormItem label="~" colon={false} key={'end_time'}>
             {
               getFieldDecorator('end_time')(
-                <DatePicker showTime format="YYYY-MM-DD HH:mm:ss"></DatePicker>
+                <DatePicker showTime placeholder={placeholder} format="YYYY-MM-DD HH:mm:ss"></DatePicker>
               )
             }
           </FormItem>
@@ -47,7 +47,7 @@ class FilterForm extends React.Component {
               getFieldDecorator(field, {
                 initialValue
               })(
-                <Input type="text" placeholder={placeholder}></Input>
+                <Input type="text" style={{ width }} placeholder={placeholder}></Input>
               )
             }
           </FormItem>
@@ -79,7 +79,16 @@ class FilterForm extends React.Component {
             }
           </FormItem>
           formItemList.push(CHECKBOX)
-        }
+        } else if(item.type === 'DATE') {
+          const Date = <FormItem label="label" key={'DATE'}>
+            {
+              getFieldDecorator(field)(
+                <DatePicker showTime placeholder={placeholder} format="YYYY-MM-DD HH:mm:ss"></DatePicker>
+              )
+            }
+          </FormItem>
+          formItemList.push(Date)
+        } 
       })
     }
     return formItemList

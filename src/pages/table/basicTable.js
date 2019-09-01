@@ -195,7 +195,8 @@ class basicTable extends React.Component {
             '4': '游泳',
             '5': '乒乓球',
             '6': '桌球',
-            '7': '篮球'
+            '7': '篮球',
+            '8': '电竞'
           }
           return config[state]
         }
