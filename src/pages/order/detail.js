@@ -39,6 +39,7 @@ class Order extends React.Component {
   // 渲染地图
   renderMap = result => {
     this.map = new window.BMap.Map('orderDetailMap')
+    this.map.enableScrollWheelZoom(true)
     // this.map.centerAndZoom('北京', 11)
     // 添加地图控件
     this.addMapControl()

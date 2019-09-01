@@ -22,7 +22,42 @@ class FilterForm extends React.Component {
     if(formList && formList.length) {
       formList.forEach((item, i) => {
         let { label, field, initialValue = '', placeholder, width} = item
-        if(item.type === '时间查询') {
+
+        if(item.type === '城市') {
+          const city = <FormItem label="城市" key={'city'}>
+            {
+              getFieldDecorator('city', {
+                initialValue: '0'
+              })(
+                <Select style={{ width }} placeholder={placeholder}>
+                  {Utils.getOptionList([
+                    {
+                      id: '0',
+                      name: '全部'
+                    },
+                    {
+                      id: '1',
+                      name: '北京'
+                    },
+                    {
+                      id: '2',
+                      name: '上海'
+                    },
+                    {
+                      id: '3',
+                      name: '天津'
+                    },
+                    {
+                      id: '4',
+                      name: '杭州'
+                    }
+                  ])}
+                </Select>
+              )
+            }
+          </FormItem>
+          formItemList.push(city)
+        }else if(item.type === '时间查询') {
           const begin_time = <FormItem label="订单时间" key={'begin_time'}>
             {
               getFieldDecorator('begin_time')(
