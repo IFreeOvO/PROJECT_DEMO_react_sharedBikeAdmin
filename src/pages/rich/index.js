@@ -17,19 +17,23 @@ export default class RichText extends React.Component{
         })
     }
 
+    // 打开获取文本弹框
     handleGetText = ()=>{
         this.setState({
             showRichText:true
         })
     }
 
+    // 编辑器内容状态变化
     onEditorChange = (editorContent) => {
         this.setState({
             editorContent,
         });
     };
 
+    // 编辑器状态变化
     onEditorStateChange = (editorState) => {
+        // console.log(editorState)
         this.setState({
             editorState
         });
