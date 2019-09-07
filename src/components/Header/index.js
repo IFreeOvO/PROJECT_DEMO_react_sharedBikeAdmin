@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Row, Col } from 'antd'
 import './index.less'
 import Util from '../../utils/utils'
@@ -48,6 +49,7 @@ class Header extends React.Component {
   }
 
   render() {
+    // console.log(this.props)
     const menuType = this.props.menuType
     return (
       <div className="header">
@@ -67,7 +69,7 @@ class Header extends React.Component {
         {
           menuType? '' : <Row className="breadcrumb">
           <Col span={4} className="breadcrumb-title">
-            首页
+            {this.props.menuName}
           </Col>
           <Col span={20} className="weather">
             <span className="date">{this.state.sysTime}</span>
@@ -85,4 +87,9 @@ class Header extends React.Component {
   }
 }
 
-export default Header
+const mapStateToProps = state => {
+  return {
+    menuName: state.menuName
+  }
+}
+export default connect(mapStateToProps)(Header)

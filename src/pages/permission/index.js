@@ -411,14 +411,11 @@ class RoleAuthForm extends React.Component {
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form
     const formItemLayout = {
       labelCol: { span: 5 },
       wrapperCol: { span: 15 }
     }
     const detail_info = this.props.detailInfo
-    const menuInfo = this.props.menuInfo
-    console.log('权限', menuInfo)
     return (
       <Form>
         <FormItem label="角色名称" {...formItemLayout}>

@@ -2,14 +2,23 @@ import React from 'react'
 import MenuConfig from './../../config/menuConfig'
 import { NavLink } from 'react-router-dom'
 import { Menu } from 'antd'
+import { connect } from 'react-redux'
+import { switchMenu } from './../../redux/action'
 import './index.less'
 const { SubMenu } = Menu
 
 class Navleft extends React.Component {
+  state = {
+    currentKey: ''
+  }
+
   componentWillMount() {
     const menuTreeNode = this.renderMenu(MenuConfig)
+    let currentKey = window.location.hash.replace(/#|\?.*$/g, '')
+    // console.log('当前路由', currentKey)
 
     this.setState({
+      currentKey,
       menuTreeNode
     })
   }
@@ -33,6 +42,17 @@ class Navleft extends React.Component {
     })
   }
 
+  handleClick = (item) => {
+    // console.log(item)
+    const title = item.item.props.children.props.children
+    // console.log('菜单名称-> ', title)
+    const { dispatch } = this.props
+    dispatch(switchMenu(title))
+    this.setState({
+      currentKey: item.key
+    })
+  }
+
   render() {
     return (
       <div>
@@ -41,10 +61,10 @@ class Navleft extends React.Component {
           <h1>Imooc MS</h1>
         </div>
 
-        <Menu theme="dark">{this.state.menuTreeNode}</Menu>
+        <Menu onClick={this.handleClick} selectedKeys={[this.state.currentKey]} theme="dark">{this.state.menuTreeNode}</Menu>
       </div>
     )
   }
 }
 
-export default Navleft
+export default connect()(Navleft)
